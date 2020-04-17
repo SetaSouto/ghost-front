@@ -1,11 +1,15 @@
 <template>
-  <div style="height: 200vh">
-    CONTENT
+  <div>
+    <v-page-title />
   </div>
 </template>
 
 <script>
+import VPageTitle from '~/components/pages/index/title/Layout'
+
 export default {
-  components: {}
+  components: {
+    VPageTitle
+  }
 }
 </script>

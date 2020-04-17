@@ -4,9 +4,7 @@
     <v-layouts-default-app-bar />
     <!-- The content to show -->
     <v-content>
-      <v-container>
-        <nuxt />
-      </v-container>
+      <nuxt />
     </v-content>
     <!-- The footer of the layout -->
     <v-footer app>
