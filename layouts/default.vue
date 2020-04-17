@@ -6,10 +6,6 @@
     <v-content>
       <nuxt />
     </v-content>
-    <!-- The footer of the layout -->
-    <v-footer app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
   </v-app>
 </template>
 

@@ -87,7 +87,7 @@ export default {
   background: url("~assets/img/backgrounds/index.jpg") center center;
   background-size: cover;
   margin-top: -64px;
-  height: 75vh;
+  height: 100vh;
   position: relative;
 }
 
