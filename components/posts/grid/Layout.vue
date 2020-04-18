@@ -9,7 +9,7 @@
         lg="4"
         xl="3"
       >
-        <v-lazy transition="slide-y-transition">
+        <v-lazy min-height="100" transition="slide-y-reverse-transition">
           <v-post-card :post="post" />
         </v-lazy>
       </v-col>

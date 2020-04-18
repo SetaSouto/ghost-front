@@ -6,10 +6,10 @@
       gradient="to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)"
       :src="post.feature_image"
     >
-      <v-container fill-height>
+      <v-container class="d-flex align-end" fill-height>
         <component
           :is="titleComponent"
-          class="px-2 bottom font-weight-light text-shadow white--text"
+          class="px-2 font-weight-light text-shadow white--text"
         >
           {{ post.title }}
         </component>
@@ -59,11 +59,6 @@ export default {
 </script>
 
 <style>
-.bottom {
-  position: absolute;
-  bottom: 5px;
-}
-
 .title-image {
   border-radius: 20px;
   margin-top: -40px;

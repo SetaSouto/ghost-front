@@ -64,8 +64,10 @@ import { reactive } from '@vue/composition-api'
  *
  * It will generate different timeouts to show all the components
  * in different orders to manage the attention of the user.
+ *
+ * Also, at the end of the animation it will emit the 'ready' event.
  */
-function useDynamicShow () {
+function useDynamicShow (context) {
   const show = reactive({
     hi: false,
     name: false,
@@ -74,17 +76,18 @@ function useDynamicShow () {
   })
 
   setTimeout(() => (show.hi = true), 500)
-  setTimeout(() => (show.name = true), 1500)
-  setTimeout(() => (show.p1 = true), 2500)
-  setTimeout(() => (show.p2 = true), 2700)
+  setTimeout(() => (show.name = true), 1000)
+  setTimeout(() => (show.p1 = true), 1500)
+  setTimeout(() => (show.p2 = true), 1750)
+  setTimeout(() => context.emit('ready'), 2150)
 
   return { show }
 }
 
 export default {
-  setup () {
+  setup (props, context) {
     return {
-      ...useDynamicShow()
+      ...useDynamicShow(context)
     }
   }
 }
