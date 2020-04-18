@@ -9,13 +9,21 @@
           <v-row>
             <v-col>
               <h1 class="text-center text-md-left">
-                <v-slide-x-transition>
-                  <div v-if="show.hi" class="d-inline-block">
+                <v-slide-x-transition mode="out-in">
+                  <div
+                    :key="show.hi"
+                    class="d-inline-block"
+                    :style="{ visibility: show.hi ? 'inherit' : 'hidden' }"
+                  >
                     Hi there!
                   </div>
                 </v-slide-x-transition>
-                <v-slide-x-reverse-transition>
-                  <div v-if="show.name" class="d-inline-block font-weight-regular">
+                <v-slide-x-reverse-transition mode="out-in">
+                  <div
+                    :key="show.name"
+                    class="d-inline-block font-weight-regular"
+                    :style="{ visibility: show.name ? 'inherit' : 'hidden' }"
+                  >
                     I'm Fabián Souto
                   </div>
                 </v-slide-x-reverse-transition>
