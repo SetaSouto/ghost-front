@@ -9,7 +9,6 @@
         class="pl-2 bounce"
         large
         :style="{ visibility: showIcon ? 'inherit' : 'hidden' }"
-        @click="emit('click:arrow')"
       >
         keyboard_arrow_down
       </v-icon>
@@ -27,7 +26,6 @@ export default {
     setTimeout(() => (showIcon.value = true), 1)
 
     return {
-      emit: context.emit,
       showIcon
     }
   }
