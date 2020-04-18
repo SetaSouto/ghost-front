@@ -110,9 +110,4 @@ export default {
   padding-top: 64px;
   position: relative;
 }
-
-.text-shadow {
-  /* offset-x | offset-y | blur-radius | color */
-  text-shadow: 1px 1px 2px black;
-}
 </style>
