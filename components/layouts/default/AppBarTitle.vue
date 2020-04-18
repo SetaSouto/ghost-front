@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar-title>
+  <v-toolbar-title class="white--text">
     <v-slide-x-transition mode="out-in">
       <div v-if="expanded" key="full" class="font-weight-light" @click.stop>
         <span class="font-weight-medium">F</span>abián

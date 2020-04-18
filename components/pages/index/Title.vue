@@ -1,5 +1,5 @@
 <template>
-  <div class="background">
+  <div class="background white--text">
     <div class="background-overlay" />
     <v-container class="container text-shadow" fill-height>
       <!-- Encapsulate all the content in a responsive col -->

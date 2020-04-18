@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex align-center justify-center">
+  <div class="d-flex align-center justify-center white--text">
     <h1 class="display-2 font-weight-light text-shadow blog-title">
       Latest posts
     </h1>
