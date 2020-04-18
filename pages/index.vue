@@ -57,4 +57,15 @@ export default {
 .posts-grid {
   margin-top: -75px;
 }
+
+@media screen and (max-height: 700px) {
+  .blog-title {
+    margin-top: -65px;
+    margin-bottom: 75px;
+  }
+
+  .posts-grid {
+    margin-top: -75px;
+  }
+}
 </style>
