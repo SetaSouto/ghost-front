@@ -1,11 +1,16 @@
 <template>
-  <v-toolbar-title class="white--text">
+  <v-toolbar-title class="cursor-pointer white--text">
     <v-slide-x-transition mode="out-in">
-      <div v-if="expanded" key="full" class="font-weight-light" @click.stop>
+      <div
+        v-if="expanded"
+        key="full"
+        class="font-weight-light"
+        @click="$router.push({ name: 'index' })"
+      >
         <span class="font-weight-medium">F</span>abián
         <span class="font-weight-medium">S</span>outo
       </div>
-      <div v-else key="short" class="font-weight-black initials" @click="expand">
+      <div v-else key="short" class="font-weight-black" @click="expand">
         FS
       </div>
     </v-slide-x-transition>
@@ -48,7 +53,7 @@ export default {
 </script>
 
 <style scoped>
-.initials {
+.cursor-pointer {
   cursor: pointer;
 }
 </style>

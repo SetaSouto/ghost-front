@@ -3,6 +3,7 @@
     <!-- The title of the app bar -->
     <v-app-bar-title />
     <v-spacer />
+    <!-- A switch to change between the light and dark theme -->
     <v-app-bar-dark-mode />
   </v-app-bar>
 </template>
