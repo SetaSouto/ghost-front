@@ -1,5 +1,5 @@
 <template>
-  <v-btn :color="$vuetify.theme.currentTheme.secondary" outlined small>
+  <v-btn :color="$vuetify.theme.currentTheme.secondary" class="mx-1 mb-1" outlined small>
     {{ tag.name }}
   </v-btn>
 </template>
