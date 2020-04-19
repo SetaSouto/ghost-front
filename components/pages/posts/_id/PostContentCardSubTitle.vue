@@ -1,6 +1,9 @@
 <template>
   <v-container class="d-flex align-center accent--text">
-    <v-post-tag v-for="tag in post.tags" :key="tag.id" :tag="tag" />
+    <div v-if="$vuetify.breakpoint.smAndUp" class="d-flex flex-wrap">
+      <v-post-tag v-for="tag in post.tags" :key="tag.id" :tag="tag" />
+    </div>
+    <v-post-tag v-else :tag="post.tags[0]" />
     <v-spacer />
     <div>{{ new Date(post.created_at).toDateString() }}</div>
     <div class="px-2">

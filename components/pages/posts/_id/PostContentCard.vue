@@ -78,7 +78,7 @@ export default {
 
 .post-content >>> figure.kg-image-card {
   width: 100%;
-  margin-bottom: 15px;
+  margin: 15px 0;
   text-align: center;
 }
 
