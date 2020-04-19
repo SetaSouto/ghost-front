@@ -22,7 +22,7 @@ export default {
   },
   setup (props) {
     return {
-      createdAt: new Date(props.post.created_at).toLocaleDateString(),
+      createdAt: new Date(props.post.created_at).toDateString(),
       readingTime: readingTime(props.post)
     }
   }

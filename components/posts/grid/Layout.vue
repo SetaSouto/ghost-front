@@ -42,7 +42,7 @@ function usePaginatedPosts (context) {
    */
   async function setPage (number) {
     page.value = number
-    await dispatch('get', { page: page.value })
+    await dispatch('get', { page: page.value, include: 'tags' })
     posts.value = (state.pages[page.value] || []).map(
       id => state.keyedById[id]
     )

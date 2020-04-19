@@ -32,7 +32,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/composition-api.js'
+    '~/plugins/composition-api.js',
+    '~/plugins/prism.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -63,8 +64,9 @@ export default {
       themes: {
         dark: {
           primary: colors.grey.darken4,
-          secondary: colors.amber.darken3,
-          accent: colors.grey.darken3,
+          secondary: colors.amber.base,
+          accent: colors.grey.base,
+          anchor: colors.amber.lighten1,
           error: colors.deepOrange.accent4,
           info: colors.teal.lighten1,
           success: colors.green.accent3,

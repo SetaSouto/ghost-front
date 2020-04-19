@@ -1,21 +1,38 @@
 <template>
   <div v-if="post">
-    <div
-      ref="postImage"
-      :style="{
-        background: `linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)), url('${post.feature_image}') no-repeat center`,
-        backgroundSize: 'cover',
-        width: '100%',
-        height: '90vh'
-      }"
-    />
+    <!-- The image of the post that covers a big part of the screen -->
+    <v-post-image :post="post" />
+    <!-- The content of the page inside a container -->
+    <v-container>
+      <!-- A card with the content of the post -->
+      <v-slide-y-reverse-transition>
+        <v-post-content-card v-if="show.contentCard" :post="post" style="margin-top: -100px" />
+      </v-slide-y-reverse-transition>
+    </v-container>
   </div>
 </template>
 
 <script>
-import { computed } from '@vue/composition-api'
-import useFLIPTransition from '~/compositions/useFLIPTransition'
+import { computed, onBeforeUnmount, reactive } from '@vue/composition-api'
 import useStore from '~/compositions/useStore'
+import VPostContentCard from '~/components/pages/posts/_id/PostContentCard'
+import VPostImage from '~/components/pages/posts/_id/PostImage'
+
+/**
+ * Perform a dynamic show of the elements of the page.
+ *
+ * @returns {Object} with the `show` reactive object with the flags
+ * to show the components of the page.
+ */
+function useDynamicShow () {
+  const show = reactive({ contentCard: false })
+
+  setTimeout(() => (show.contentCard = true), 300)
+
+  onBeforeUnmount(() => (show.contentCard = false))
+
+  return { show }
+}
 
 /**
  * Get the post to use from the store.
@@ -33,22 +50,21 @@ function usePost (context) {
 
   // Dispatch the get actions. The action is smart and will not trigger
   // the api call if the item is already in the store.
-  dispatch('get', { id })
+  dispatch('get', { id, include: 'tags' })
 
   return { id, post }
 }
 
 export default {
+  components: {
+    VPostContentCard,
+    VPostImage
+  },
   setup (props, context) {
-    const { id, post } = usePost(context)
-
-    useFLIPTransition(context, {
-      key: `post-image-${id}`,
-      ref: 'postImage',
-      delay: 15
-    })
-
-    return { post }
+    return {
+      ...usePost(context),
+      ...useDynamicShow()
+    }
   }
 }
 </script>

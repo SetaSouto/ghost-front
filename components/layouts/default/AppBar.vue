@@ -19,10 +19,13 @@ export default {
     VAppBarTitle
   },
   setup (props, context) {
+    // Show it transparent only in the home page
     const theme = useVuetifyTheme(context)
+    const end = theme.primary.darken1
+    const start = context.root.$route.name === 'index' ? 'transparent' : end
 
     return {
-      ...useSetColorOnScroll({ end: theme.primary.darken1 })
+      ...useSetColorOnScroll({ start, end })
     }
   }
 }
