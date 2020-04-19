@@ -24,9 +24,11 @@ export default () => {
    * Set the instances of the resource in the store keyed by id.
    *
    * @param {Object} state
-   * @param {Object[]} instances
+   * @param {Object[]} instances object to set in the store. You can also
+   * provide a single instance to add.
    */
   function setKeyedById (state, instances) {
+    instances = Array.isArray(instances) ? instances : [instances]
     state.keyedById = {
       ...state.keyedById,
       ...instances.reduce((keyed, instance) => {

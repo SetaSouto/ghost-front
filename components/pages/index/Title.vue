@@ -57,6 +57,7 @@
 
 <script>
 import { reactive } from '@vue/composition-api'
+import useStore from '~/compositions/useStore'
 
 /**
  * A composition function that provides the `show` object
@@ -66,8 +67,11 @@ import { reactive } from '@vue/composition-api'
  * in different orders to manage the attention of the user.
  *
  * Also, at the end of the animation it will emit the 'ready' event.
+ *
+ * @param {Object} context to have the emit event and load the store.
  */
 function useDynamicShow (context) {
+  const { state } = useStore('pageTransitions', context)
   const show = reactive({
     hi: false,
     name: false,
@@ -75,11 +79,19 @@ function useDynamicShow (context) {
     p2: false
   })
 
-  setTimeout(() => (show.hi = true), 500)
-  setTimeout(() => (show.name = true), 1000)
-  setTimeout(() => (show.p1 = true), 1500)
-  setTimeout(() => (show.p2 = true), 1750)
-  setTimeout(() => context.emit('ready'), 2150)
+  if (state.alreadyLoadedHome) {
+    show.hi = true
+    show.name = true
+    show.p1 = true
+    show.p2 = true
+    context.emit('ready')
+  } else {
+    setTimeout(() => (show.hi = true), 500)
+    setTimeout(() => (show.name = true), 1000)
+    setTimeout(() => (show.p1 = true), 1500)
+    setTimeout(() => (show.p2 = true), 1750)
+    setTimeout(() => context.emit('ready'), 2150)
+  }
 
   return { show }
 }

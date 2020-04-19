@@ -1,9 +1,13 @@
 <template>
-  <div class="d-flex justify-end body-2 font-weight-light">
+  <v-container class="py-0 d-flex align-center body-2 font-weight-light">
+    <v-btn outlined small @click="$router.push({ name: 'posts-id', params: { id: post.id }})">
+      READ
+    </v-btn>
+    <v-spacer />
     <span>{{ readingTime }}</span>
     <span class="mx-2">&middot;</span>
     <span>{{ createdAt }}</span>
-  </div>
+  </v-container>
 </template>
 
 <script>

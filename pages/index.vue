@@ -15,21 +15,37 @@ import { reactive, ref, watch } from '@vue/composition-api'
 import VBlogTitle from '~/components/pages/index/BlogTitle'
 import VPageTitle from '~/components/pages/index/Title'
 import VPostsGrid from '~/components/posts/grid/Layout'
+import useStore from '~/compositions/useStore'
 
 /**
  * Make the blog animations synchronize after the title's
  * animations are ready.
+ *
+ * @param {Object} context provided in the setup method to get the store.
  */
-function useDynamicShow () {
+function useDynamicShow (context) {
   const titleReady = ref(false)
   const show = reactive({ title: false, grid: false })
+  const { commit, state } = useStore('pageTransitions', context)
 
-  watch(titleReady, () => {
-    if (titleReady.value) {
-      setTimeout(() => (show.title = true), 100)
-      setTimeout(() => (show.grid = true), 300)
+  if (state.alreadyLoadedHome) {
+    show.title = true
+    show.grid = true
+  } else {
+    // Do not commit in the server side to avoid conflicts with different
+    // components from server and client
+    if (!context.isServer) {
+      // Give some time to the other components to render
+      setTimeout(() => commit('setAlreadyLoadedHome'), 1000)
     }
-  })
+
+    watch(titleReady, () => {
+      if (titleReady.value) {
+        setTimeout(() => (show.title = true), 100)
+        setTimeout(() => (show.grid = true), 300)
+      }
+    })
+  }
 
   return { show, titleReady }
 }
@@ -40,9 +56,10 @@ export default {
     VPageTitle,
     VPostsGrid
   },
-  setup () {
+  scrollToTop: false,
+  setup (props, context) {
     return {
-      ...useDynamicShow()
+      ...useDynamicShow(context)
     }
   }
 }
