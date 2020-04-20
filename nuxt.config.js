@@ -28,7 +28,8 @@ export default {
   ** Global CSS
   */
   css: [
-    '~/assets/css/textShadow.css'
+    '~/assets/css/textShadow.css',
+    'vuetify/dist/vuetify.css'
   ],
   /*
   ** Plugins to load before mounting the App
