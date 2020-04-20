@@ -27,5 +27,10 @@ describe('API', () => {
       expect(res.posts.length).toBe(1)
       expect(res.posts[0].id).toBe(id)
     })
+
+    it('should get all the posts', () => posts.get({ limit: 'all' }).then((res) => {
+      expect(res).toHaveProperty('posts')
+      expect(res.posts.length).toBeGreaterThan(0)
+    }))
   })
 })

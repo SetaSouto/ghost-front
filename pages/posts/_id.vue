@@ -60,6 +60,16 @@ export default {
     VPostContentCard,
     VPostImage
   },
+  /**
+   * We can receive a `payload` because is generated in the `npm run generate`
+   * command, on build time. See `~/nuxt.config.js` the `generate.routes` function.
+   *
+   * See: https://nuxtjs.org/api
+   * See: https://nuxtjs.org/api/configuration-generate#speeding-up-dynamic-route-generation-with-code-payload-code-
+   */
+  asyncData ({ store, payload }) {
+    store.commit('posts/setKeyedById', payload)
+  },
   setup (props, context) {
     return {
       ...usePost(context),

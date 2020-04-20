@@ -1,4 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
+import { posts } from './api'
+
 require('dotenv').config()
 
 export default {
@@ -86,10 +88,19 @@ export default {
     }
   },
   /**
-   * Avoid 404 errors in production.
-   * See: https://nuxtjs.org/faq/netlify-deployment/#for-site-generated-in-spa-mode
+   * Avoid 404 errors in production because dynamic routes does not exists.
+   *
+   * See: https://nuxtjs.org/api/configuration-generate/#routes
    */
   generate: {
-    fallback: true
+    routes () {
+      return posts.get({ limit: 'all' })
+        .then(({ posts }) => posts
+          .map(post => ({
+            route: `/posts/${post.id}`,
+            payload: post
+          }))
+        )
+    }
   }
 }
