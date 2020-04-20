@@ -6,7 +6,7 @@
     <v-container>
       <!-- A card with the content of the post -->
       <v-slide-y-reverse-transition>
-        <v-post-content-card v-if="show.contentCard" :post="post" style="margin-top: -100px" />
+        <v-post-content-card v-if="show.contentCard" :post="post" style="margin-top: -250px" />
       </v-slide-y-reverse-transition>
     </v-container>
   </div>
