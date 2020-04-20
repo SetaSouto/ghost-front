@@ -13,8 +13,7 @@
 </template>
 
 <script>
-import { computed, onBeforeUnmount, reactive } from '@vue/composition-api'
-import useStore from '~/compositions/useStore'
+import { onBeforeUnmount, reactive } from '@vue/composition-api'
 import VPostContentCard from '~/components/pages/posts/_id/PostContentCard'
 import VPostImage from '~/components/pages/posts/_id/PostImage'
 
@@ -34,27 +33,6 @@ function useDynamicShow () {
   return { show }
 }
 
-/**
- * Get the post to use from the store.
- *
- * @param {Object} context provided in the setup method
- * to get the store.
- * @returns {Object} with the `post` instance (probably undefined in the first
- * return becuase it didn't wait for the action to finis) and the `id`
- * of the post.
- */
-function usePost (context) {
-  const id = context.root.$route.params.id
-  const { state, dispatch } = useStore('posts', context)
-  const post = computed(() => state.keyedById[id])
-
-  // Dispatch the get actions. The action is smart and will not trigger
-  // the api call if the item is already in the store.
-  dispatch('get', { id, include: 'tags' })
-
-  return { id, post }
-}
-
 export default {
   components: {
     VPostContentCard,
@@ -67,16 +45,34 @@ export default {
    * See: https://nuxtjs.org/api
    * See: https://nuxtjs.org/api/configuration-generate#speeding-up-dynamic-route-generation-with-code-payload-code-
    */
-  asyncData ({ params, payload, store }) {
+  async asyncData ({ params, payload, store }) {
     if (payload) {
       store.commit('posts/setKeyedById', payload)
+      return { post: payload }
     } else {
-      store.dispatch('posts/get', { id: params.id, include: 'tags' })
+      await store.dispatch('posts/get', { id: params.id, include: 'tags' })
+      return { post: store.state.posts.keyedById[params.id] }
+    }
+  },
+  /**
+   * Set the correct tags in the head of the page.
+   *
+   * We are going to change the default title and description of the page
+   * to use the post's title and its excerpt.
+   *
+   * See: https://nuxtjs.org/api/pages-head/
+   * See: https://medium.com/vue-mastery/best-practices-for-nuxt-js-seo-32399c49b2e5
+   */
+  head () {
+    return {
+      title: `${this.post.title} - Fabián Souto`,
+      meta: [
+        { hid: 'description', name: 'description', content: this.post.excerpt }
+      ]
     }
   },
   setup (props, context) {
     return {
-      ...usePost(context),
       ...useDynamicShow()
     }
   }
