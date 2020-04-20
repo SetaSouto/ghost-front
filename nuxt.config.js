@@ -84,5 +84,12 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+  /**
+   * Avoid 404 errors in production.
+   * See: https://nuxtjs.org/faq/netlify-deployment/#for-site-generated-in-spa-mode
+   */
+  generate: {
+    fallback: true
   }
 }
