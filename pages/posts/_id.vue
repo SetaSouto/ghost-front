@@ -67,8 +67,12 @@ export default {
    * See: https://nuxtjs.org/api
    * See: https://nuxtjs.org/api/configuration-generate#speeding-up-dynamic-route-generation-with-code-payload-code-
    */
-  asyncData ({ store, payload }) {
-    store.commit('posts/setKeyedById', payload)
+  asyncData ({ params, payload, store }) {
+    if (payload) {
+      store.commit('posts/setKeyedById', payload)
+    } else {
+      store.dispatch('posts/get', { id: params.id, include: 'tags' })
+    }
   },
   setup (props, context) {
     return {
