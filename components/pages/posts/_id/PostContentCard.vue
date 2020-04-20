@@ -110,4 +110,11 @@ export default {
 .post-content-card >>> code::before {
   content: "";
 }
+
+.post-content-card >>> blockquote {
+  border-left: 2px solid rgba(125, 125, 125, 0.5);
+  font-style: italic;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+}
 </style>
