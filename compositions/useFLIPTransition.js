@@ -68,7 +68,7 @@ export default function (context, { key, namespace = 'FLIP', ref, delay, callbac
       }
     ]
 
-    return element.animate(keyFrames, { duration: 300, easing: 'ease-in-out', fill: 'both' })
+    return element.animate(keyFrames, { duration: 300, easing: 'ease-in-out' })
   }
 
   onMounted(function () {
