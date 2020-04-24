@@ -86,12 +86,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .title-container {
   cursor: pointer;
   margin-top: -40px;
   min-height: 200px;
   position: relative;
+  transition: all 0.2s;
 }
 
 .post-image {
@@ -99,5 +100,11 @@ export default {
   width: 100%;
   height: 100%;
   position: absolute;
+  transition: all 0.2s;
+}
+
+.title-container:hover > .post-image {
+  transform: scale(1.03);
+  transition: all 0.2s;
 }
 </style>
