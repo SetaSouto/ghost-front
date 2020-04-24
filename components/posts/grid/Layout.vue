@@ -5,9 +5,9 @@
         v-for="post in posts"
         :key="post.id"
         cols="12"
-        sm="6"
-        lg="4"
-        xl="3"
+        :sm="post.featured ? 12 : 6"
+        :lg="post.featured ? 8 : 4"
+        :xl="post.featured ? 6 : 3"
       >
         <v-post-card :post="post" />
       </v-col>
