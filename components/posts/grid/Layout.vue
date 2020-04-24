@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row class="d-flex flex-wrap">
+    <v-row class="d-flex flex-wrap justify-center">
       <v-col
         v-for="post in posts"
         :key="post.id"
