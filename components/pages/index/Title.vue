@@ -37,7 +37,7 @@
                 <v-slide-y-reverse-transition mode="out-in">
                   <p :key="show.p1" :style="{ visibility: show.p1 ? 'inherit' : 'hidden' }">
                     Data Scientist and Full Stack developer with years of hands-on software and machine
-                    learning development. Computer vision and natural language processing expert.
+                    learning development. Computer vision and natural language processing enthusiast.
                   </p>
                 </v-slide-y-reverse-transition>
                 <v-slide-y-reverse-transition mode="out-in">
