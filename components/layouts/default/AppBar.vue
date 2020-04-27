@@ -3,6 +3,8 @@
     <!-- The title of the app bar -->
     <v-app-bar-title />
     <v-spacer />
+    <!-- Social networks -->
+    <v-app-bar-networks />
     <!-- A switch to change between the light and dark theme -->
     <v-app-bar-dark-mode />
   </v-app-bar>
@@ -11,13 +13,15 @@
 <script>
 import VAppBarDarkMode from './AppBarDarkMode'
 import VAppBarTitle from './AppBarTitle'
+import VAppBarNetworks from './AppBarNetworks'
 import useSetColorOnScroll from '~/compositions/useSetColorOnScroll.js'
 import useVuetifyTheme from '~/compositions/useVuetifyTheme'
 
 export default {
   components: {
     VAppBarDarkMode,
-    VAppBarTitle
+    VAppBarTitle,
+    VAppBarNetworks
   },
   setup (props, context) {
     // Show it transparent only in the home page
