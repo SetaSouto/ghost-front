@@ -9,11 +9,15 @@
       <v-post-content-card-sub-title :post="post" />
       <!-- eslint-disable-next-line vue/no-v-html -->
       <div v-html="post.html" />
+      <!-- The information of the author -->
+      <v-divider />
+      <v-author-info />
     </v-container>
   </v-card>
 </template>
 
 <script>
+import VAuthorInfo from './AuthorInfo'
 import VPostContentCardSubTitle from './PostContentCardSubTitle'
 import usePrism from '~/compositions/usePrism'
 
@@ -22,6 +26,7 @@ import usePrism from '~/compositions/usePrism'
  */
 export default {
   components: {
+    VAuthorInfo,
     VPostContentCardSubTitle
   },
   props: {
