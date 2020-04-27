@@ -1,15 +1,21 @@
 <template>
-  <v-container class="d-flex align-center accent--text">
-    <div v-if="$vuetify.breakpoint.smAndUp" class="d-flex flex-wrap">
+  <v-container class="d-flex align-center accent--text flex-column flex-wrap justify-center">
+    <!-- The date and reading time -->
+    <div class="d-flex align-center flex-wrap justify-center mb-3">
+      <div class="px-2">
+        {{ new Date(post.created_at).toDateString() }}
+      </div>
+      <div v-if="$vuetify.breakpoint.width > 350" class="px-2">
+        ·
+      </div>
+      <div class="px-2">
+        {{ readingTime }}
+      </div>
+    </div>
+    <!-- The tags of the post -->
+    <div class="d-flex flex-wrap justify-center">
       <v-post-tag v-for="tag in post.tags" :key="tag.id" :tag="tag" />
     </div>
-    <v-post-tag v-else :tag="post.tags[0]" />
-    <v-spacer />
-    <div>{{ new Date(post.created_at).toDateString() }}</div>
-    <div class="px-2">
-      ·
-    </div>
-    <div>{{ readingTime }}</div>
   </v-container>
 </template>
 
@@ -34,6 +40,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-</style>
