@@ -79,7 +79,7 @@ function useDynamicShow (context) {
     p2: false
   })
 
-  if (state.alreadyLoadedHome) {
+  if (state.ready.index) {
     show.hi = true
     show.name = true
     show.p1 = true

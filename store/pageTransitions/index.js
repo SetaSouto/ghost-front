@@ -1,15 +1,22 @@
+import Vue from 'vue'
+
 export const state = () => ({
-  alreadyLoadedHome: false
+  // Mark as ready the pages already loaded once
+  ready: {
+    index: false
+  }
 })
 
 export const mutations = {
   /**
-   * Set as true the `alreadyLoadedHome` flag to indicate
-   * tha the home page was already loaded once.
+   * Set as ready the given page.
+   *
+   * This can be useful for transitions that must be executed only once.
    *
    * @param {Object} state
+   * @param {String} page the page to set as ready.
    */
-  setAlreadyLoadedHome (state) {
-    state.alreadyLoadedHome = true
+  setReady (state, page) {
+    Vue.set(state.ready, page, true)
   }
 }

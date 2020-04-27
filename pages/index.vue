@@ -28,7 +28,7 @@ function useDynamicShow (context) {
   const show = reactive({ title: false, grid: false })
   const { commit, state } = useStore('pageTransitions', context)
 
-  if (state.alreadyLoadedHome) {
+  if (state.ready.index) {
     show.title = true
     show.grid = true
   } else {
@@ -36,7 +36,7 @@ function useDynamicShow (context) {
     // components from server and client
     if (!context.isServer) {
       // Give some time to the other components to render
-      setTimeout(() => commit('setAlreadyLoadedHome'), 1000)
+      setTimeout(() => commit('setReady', 'index'), 1000)
     }
 
     watch(titleReady, () => {
